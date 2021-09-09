@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Book Details</title>
+{% endblock head %}
+{% block body %}
+    <div class="container">
+        <a href='{% url 'home' %}'>Home</a>
+        <h3>{{book}}</h3>
+        <h4>{{book.price}}</h4>
+        <p>{{book.desc}}</p>
+        Written by: {{book.author}}
+    </div>
+{% endblock body %}

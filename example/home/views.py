@@ -3,7 +3,15 @@ from .models import Book
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    books = Book.objects.all()
+    context = {
+        'books': books
+    }
+    return render(request, 'index.html', context)
 
-def dynamci_view(request, string):
-    return HttpResponse(string)
+def detail_book_view(request, pk):
+    book = Book.objects.get(pk = pk)
+    context = {
+        'book' : book
+    }
+    return render(request, 'detail_book.html', context)
