@@ -15,3 +15,6 @@ def detail_book_view(request, pk):
         'book' : book
     }
     return render(request, 'detail_book.html', context)
+
+def get_view(request):
+    return render(request, 'get.html')
