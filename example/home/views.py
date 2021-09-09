@@ -18,3 +18,7 @@ def detail_book_view(request, pk):
 
 def get_view(request):
     return render(request, 'get.html')
+
+def display(request):
+    get_var = request.GET.get("get_name")
+    return HttpResponse(f"You send {get_var} thorough GET request")
