@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Add Book</title>
+{% endblock head %}
+{% block body %}
+<div class="container">
+    <h3>Add Book</h3>
+    <form action="{% url 'post_book' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" name="book_name" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Price</label>
+            <input type="number" name="price" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+            <textarea name="desc" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <button class="btn btn-success">
+            Add Book
+        </button>
+    </form>
+</div>
+{% endblock body %}
