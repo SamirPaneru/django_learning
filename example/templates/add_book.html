@@ -7,7 +7,11 @@
     <h3>Add Book</h3>
     <form action="{% url 'post_book' %}" method="post">
         {% csrf_token %}
-        <div class="mb-3">
+        {{form.as_p}} <!-- form mathra lekhda horizontally aauxa 
+                            ani .as_p use garyo vane paragraph ko tarikale aauxa -->
+
+
+        {% comment %} <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Name</label>
             <input type="text" name="book_name" class="form-control" id="exampleFormControlInput1">
         </div>
@@ -18,7 +22,7 @@
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Description</label>
             <textarea name="desc" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
+        </div> {% endcomment %}
         <button class="btn btn-success">
             Add Book
         </button>

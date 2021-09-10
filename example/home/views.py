@@ -1,5 +1,7 @@
+from django import forms
 from django.shortcuts import redirect, render, HttpResponse
 from .models import Book
+from .forms import AddBookForm
 
 # Create your views here.
 def index(request):
@@ -28,15 +30,16 @@ def display(request):
         return HttpResponse(f"You send {get_var} thorough GET request")
 
 def add_book(request):
-    return render(request, 'add_book.html')
+    form = AddBookForm()
+    context = {'form': form}
+    return render(request, 'add_book.html', context)
 
 def post_book(request):
     if request.method == "POST":
-        name = request.POST.get('book_name')
-        price = request.POST.get('price')
-        desc = request.POST.get('desc')
-        print(name, price, desc)
-        Book.objects.create(name=name, price=price, desc=desc, author=request.user)
+        form = AddBookForm(request.POST)
+        if form.is_valid():
+            form.cleaned_data["author"] = request.user
+            Book.objects.create(**form.cleaned_data) # ** le dictionary ma throw gareko value harulai catch garxa
         return redirect('home')
     else:
         return redirect('home')

@@ -4,6 +4,7 @@
 {% endblock head %}
 {% block body %}
     <div class="container">
+        <a href="{% url 'add_book' %}" class="btn btn-danger float-end">Add Book</a>
         <h1>All books</h1>
         {% for book in books %}
             name:
