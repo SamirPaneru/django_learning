@@ -1,0 +1,14 @@
+{
+    "[django-html]": {
+    
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": true,
+            "strings": true
+        }
+    },
+    // yo muni ko code le django html file ma ni html code snippets use garne banauxa
+    "emmet.includeLanguages": {
+        "django-html": "html",
+    }
+}
