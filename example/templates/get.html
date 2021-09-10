@@ -1,4 +1,12 @@
+{% comment %} learing get & post in django {% endcomment %}
+
 <form action="{% url 'display' %}" method="get">
     <input type="text" name="get_name">
-    <button>Click Here..</button>
+    <button>Click Here for Get Request</button>
+</form>
+
+<form action="{% url 'display' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="get_name">
+    <button>Click Here for Post Request</button>
 </form>

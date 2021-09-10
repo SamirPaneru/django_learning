@@ -20,5 +20,9 @@ def get_view(request):
     return render(request, 'get.html')
 
 def display(request):
-    get_var = request.GET.get("get_name")
-    return HttpResponse(f"You send {get_var} thorough GET request")
+    if request.method == "POST":
+        get_var = request.POST.get("get_name")
+        return HttpResponse(f"You send {get_var} thorough POST request")
+    else:
+        get_var = request.GET.get("get_name")
+        return HttpResponse(f"You send {get_var} thorough GET request")
