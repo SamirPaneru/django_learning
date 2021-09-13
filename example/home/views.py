@@ -38,7 +38,7 @@ def post_book(request):
     if request.method == "POST":
         form = AddBookForm(request.POST)
         if form.is_valid():
-            form.cleaned_data["author"] = request.user
+            form.cleaned_data["author"] = request.user.author
             Book.objects.create(**form.cleaned_data) # ** le dictionary ma throw gareko value harulai catch garxa
         return redirect('home')
     else:
