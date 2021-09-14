@@ -3,5 +3,12 @@
     <title>Edit Book</title>
 {% endblock head %}
 {% block body %}
-    
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{form}}
+            <br>
+            <button class='btn-primary'>Edit Book</button>
+        </form>
+    </div>
 {% endblock body %}

@@ -15,6 +15,10 @@
                 {{book}}
             </h5>
         </a>
+        <a href='{% url 'edit_book' book.pk %}'>Edit Book</a>
+        ~~~
+        <a href='{% url 'delete_book' book.pk %}'>Delete Book</a>
+        <br>
         <br>
     {% endfor %}
 </div>

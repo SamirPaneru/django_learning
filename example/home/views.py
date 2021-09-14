@@ -56,4 +56,29 @@ def profile(request, username):
         context = {'author': '404 not found'}
     return render(request, 'profile.html', context)
 
-def 
+@login_required
+def edit_book(request, pk):
+    book = Book.objects.get(pk = pk)
+    if book.author.user == request.user:
+        form = AddBookForm({'name': book.name, 'desc': book.desc, 'price': book.price})
+        context = {'form': form}
+        if request.method == 'POST':
+            form = AddBookForm(request.POST)
+            if form.is_valid():
+                book.name, book.price, book.desc = form.cleaned_data.values()
+                book.save()
+                return redirect('detail_book', book.pk)
+    else:
+        return redirect('home')
+    return render(request, 'edit_book.html', context)
+
+@login_required
+def delete_book(request, pk):
+    book = Book.objects.get(pk = pk)
+    if book.author.user == request.user:
+        if request.method == 'POST':
+            book.delete()
+            return redirect('profile', request.user.username)
+    else:
+        return redirect('home')
+    return render(request, 'delete_book.html', {'book': book})

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Delete Book</title>
+{% endblock head %}
+{% block body %}
+    <div class="container">
+        <h1>
+            Are you sure you want to delete the Book?
+        </h1>
+        <h3>
+            Name: {{book.name}}
+        </h3>
+
+        <form method='post'>
+            {% csrf_token %}
+            <button class='btn btn-danger'>Delete</button>
+        </form>
+    </div>
+{% endblock body %}

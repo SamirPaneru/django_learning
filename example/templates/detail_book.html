@@ -5,9 +5,10 @@
 {% block body %}
     <div class="container">
         {% comment %} <a href='{% url 'home' %}'>Home</a> {% endcomment %}
+        <a href="{% url 'edit_book' book.pk %}" class="btn btn-danger float-end">Edit Book</a>
         <h3>{{book}}</h3>
         <h4>{{book.price}}</h4>
         <p>{{book.desc}}</p>
-        Written by: {{book.author}}
+        Written by: <a href='{% url 'profile' book.author %}'>{{book.author}}</a>
     </div>
 {% endblock body %}
