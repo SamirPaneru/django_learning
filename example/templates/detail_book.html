@@ -4,7 +4,7 @@
 {% endblock head %}
 {% block body %}
     <div class="container">
-        <a href='{% url 'home' %}'>Home</a>
+        {% comment %} <a href='{% url 'home' %}'>Home</a> {% endcomment %}
         <h3>{{book}}</h3>
         <h4>{{book.price}}</h4>
         <p>{{book.desc}}</p>

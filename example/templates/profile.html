@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>{{request.user}}</title>
+{% endblock head %}
+{% block body %}
+
+<div class="container">
+    <h1>
+        {{author}}
+    </h1>
+    <br>
+    {% for book in author.book_set.all %}
+        <a href='{% url 'detail_book' book.pk  %}'>
+            <h5>
+                {{book}}
+            </h5>
+        </a>
+        <br>
+    {% endfor %}
+</div>
+
+{% endblock body %}

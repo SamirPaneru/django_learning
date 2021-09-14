@@ -2,6 +2,9 @@ from django import forms
 from django.shortcuts import redirect, render, HttpResponse
 from .models import Book
 from .forms import AddBookForm
+from django.contrib.auth.decorators import login_required
+from auth_user.models import Author
+from .models import User
 
 # Create your views here.
 def index(request):
@@ -29,6 +32,7 @@ def display(request):
         get_var = request.GET.get("get_name")
         return HttpResponse(f"You send {get_var} thorough GET request")
 
+@login_required
 def add_book(request):
     form = AddBookForm()
     context = {'form': form}
@@ -43,3 +47,13 @@ def post_book(request):
         return redirect('home')
     else:
         return redirect('home')
+
+def profile(request, username):
+    try:
+        author = Author.objects.get(user=User.objects.get(username=username))
+        context = {'author' : author}
+    except:
+        context = {'author': '404 not found'}
+    return render(request, 'profile.html', context)
+
+def 
