@@ -17,6 +17,8 @@ from django import urls
 from django.contrib import admin
 from django.urls import path, include
 from django.http import  HttpResponse
+from django.conf import settings
+from django.conf.urls.static import static
 
 # def index(request):
 #     return HttpResponse('Hello this is my first view')
@@ -30,5 +32,5 @@ urlpatterns = [
     path('auth/', include('auth_user.urls')),
     # path('', index),
     # path('<str:name>', dynamic_view)
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
