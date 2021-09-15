@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from .models import Author
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 def login_view(request):
@@ -23,7 +24,7 @@ def login_request(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.Error(request, 'Invalid username/password')
+            messages.error(request, 'Invalid username/password')
             return redirect('login_view')
     return render(request, 'login_view.html')
 
@@ -39,17 +40,17 @@ def register(request):
         if (password == c_password):
             if len(password) >= 8:
                 if User.objects.filter(username= username).exists():
-                    messages.Error(request, "Username already exists")
+                    messages.error(request, "Username already exists")
                     return redirect('register_view')
                 else:
                     user = User.objects.create_user(username = username, password = c_password)
                     Author.objects.create(user=user)
                     return redirect('login_view')
             else:
-                messages.Error(request, "Password must be atleast 8 char long")
+                messages.error(request, "Password must be atleast 8 char long")
                 return redirect('register_view')
         else:
-            messages.Error(request, "Password do not match")
+            messages.error(request, "Password do not match")
             return redirect('register_view')
     return render(request, 'register.html')
 

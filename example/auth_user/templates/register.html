@@ -75,6 +75,14 @@ button:hover {
 
 <form action="{% url 'register' %}" style="border:1px solid #ccc", method="POST">
     {% csrf_token %}
+    {% if messages %}
+      <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+</ul>
+{% endif %}
+
   <div class="container">
     <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
