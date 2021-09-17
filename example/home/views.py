@@ -82,3 +82,15 @@ def delete_book(request, pk):
     else:
         return redirect('home')
     return render(request, 'delete_book.html', {'book': book})
+
+@login_required
+def profile_picture(request):
+    if request.method == 'POST':
+        author = Author.objects.get(user = request.user)
+        picture = request.FILES.get('pic')
+        # print(picture)
+        author.profile_pic = picture
+        author.save()
+        return redirect('profile', request.user.username)
+
+    return redirect('profile', request.user.username)

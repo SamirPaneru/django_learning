@@ -1,5 +1,5 @@
 from django.urls import path
-from home.views import edit_book, get_view, index, detail_book_view, display, add_book, post_book, profile, delete_book
+from home.views import edit_book, get_view, index, detail_book_view, display, add_book, post_book, profile, delete_book, profile_picture
 
 urlpatterns = [
     path('', index, name='home'),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('user/<str:username>', profile, name='profile'),
     path('edit_book/<int:pk>', edit_book, name='edit_book'),
     path('delete_book/<int:pk>', delete_book, name='delete_book'),
+    path('profile_picture', profile_picture, name='profile_picture'),
 ]

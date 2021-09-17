@@ -11,8 +11,22 @@
     </h1>
     {% if author.profile_pic %}
         <img src='{{author.profile_pic.url}}' alt="" height = '100'>
+
+        <form action='{% url 'profile_picture' %}' enctype='multipart/form-data' method="post">
+            {% csrf_token %}
+            <input type="file" accept="image/*" name="pic">
+            <br>
+            <button class="btn btn-dark">Update Profile Picture</button>
+        </form>
     {% else %}
         <img src={% static 'images/default_profile_pic.png' %} alt="Profile Pic" height='100'>
+
+        <form action='{% url 'profile_picture' %}' enctype='multipart/form-data' method="post">
+            {% csrf_token %}
+            <input type="file" accept="image/*" name="pic">
+            <br>
+            <button class="btn btn-dark">Add Profile Picture</button>
+        </form>
     {% endif %}
     <br>
     
