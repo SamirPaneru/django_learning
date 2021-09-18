@@ -18,6 +18,10 @@
             <br>
             <button class="btn btn-dark">Update Profile Picture</button>
         </form>
+        <form action='{% url 'delete_profile_picture' %}'>
+            {% csrf_token %}
+            <button class="btn btn-danger">Delete Profile Picture</button>
+        </form>
     {% else %}
         <img src={% static 'images/default_profile_pic.png' %} alt="Profile Pic" height='100'>
 

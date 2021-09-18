@@ -5,6 +5,7 @@ from .forms import AddBookForm
 from django.contrib.auth.decorators import login_required
 from auth_user.models import Author
 from .models import User
+import os
 
 # Create your views here.
 def index(request):
@@ -85,12 +86,29 @@ def delete_book(request, pk):
 
 @login_required
 def profile_picture(request):
+    author = Author.objects.get(user = request.user)
     if request.method == 'POST':
-        author = Author.objects.get(user = request.user)
         picture = request.FILES.get('pic')
         # print(picture)
         author.profile_pic = picture
         author.save()
         return redirect('profile', request.user.username)
+    else:
+        author.profile_pic = None
+    #     image_path = author.images.path
+    #     #author.profile_pic.delete(save=True)
+    #     #if os.path.exists(image_path):
+    #     print(image_path)        
+        return redirect('profile', request.user.username)
 
+@login_required
+def delete_profile_picture(request):
+    author = Author.objects.get(user = request.user)
+    os.remove(f'{author.profile_pic.path}')
+    author.profile_pic = None
+    picture = request.FILES.get('pic')
+    # print(picture)
+    author.profile_pic = picture
+    author.save()
+    print(author.profile_pic)
     return redirect('profile', request.user.username)
